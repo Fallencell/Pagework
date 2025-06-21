@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to PageWork!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --accent: #00BFAE;
+      --bg: #f5f7fa;
+      --text: #222;
+      --card: #fff;
+      --shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      color: var(--text);
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 2.5rem 1rem 2rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      margin: 0 0 0.5rem 0;
+    }
+    header p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    nav {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 1.2rem;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .container {
+      max-width: 950px;
+      margin: 2rem auto 0 auto;
+      padding: 0 1.2rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .card:hover {
+      transform: translateY(-4px) scale(1.04);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+    .card p {
+      font-size: 1rem;
+      flex-grow: 1;
+    }
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+    section.intro {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 2.2rem 1.6rem;
+      margin-bottom: 2.5rem;
+    }
+    section.intro h2 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    section.intro p {
+      font-size: 1.17rem;
+      line-height: 1.7;
+      color: #444;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2.2rem 1rem 1.2rem 1rem;
+      margin-top: 3rem;
+      color: #888;
+      background: #fff;
+      box-shadow: var(--shadow);
+      border-radius: 16px 16px 0 0;
+      font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .container { padding: 0 0.4rem; }
+      .card { padding: 1.1rem 0.6rem; }
+      section.intro { padding: 1.2rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to PageWork</h1>
+    <p>
+      Your all-in-one hub for creative web projects, experiments, and resources.  
+      Explore demos, guides, and tools built and curated by <strong>Fallencell</strong>.
+    </p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section id="about" class="intro">
+      <h2>About This Site</h2>
+      <p>
+        <b>PageWork</b> is a showcase and playground for web technologies, JavaScript tools, and interactive demos. Whether you're looking for inspiration, useful snippets, or just want to see what's possible with modern web development, you've come to the right place!
+      </p>
+      <p>
+        Everything here is open source and built for learning, experimenting, and sharing ideas with the world. Feel free to fork, remix, or contribute!
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h2>Interactive JavaScript Demos</h2>
+          <p>
+            Explore hands-on demos that showcase JavaScript features, animation, and dynamic UI elements. Great for learning and quick prototyping.
+          </p>
+          <a href="#">View Demos &rarr;</a>
+        </div>
+        <div class="card">
+          <h2>CSS Tricks & Layouts</h2>
+          <p>
+            Discover creative CSS layouts, responsive design patterns, and beautiful effects. Includes source code and live previews.
+          </p>
+          <a href="#">See Layouts &rarr;</a>
+        </div>
+        <div class="card">
+          <h2>Web Tools & Utilities</h2>
+          <p>
+            Handy tools for developers: color pickers, JSON formatters, and more. Lightweight, open source, and ready to use.
+          </p>
+          <a href="#">Browse Tools &rarr;</a>
+        </div>
+        <div class="card">
+          <h2>Learning Guides</h2>
+          <p>
+            Step-by-step guides and tutorials on modern web development topics, from HTML5 to advanced JavaScript and accessibility.
+          </p>
+          <a href="#">Read Guides &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" style="margin-top:3rem;">
+      <h2>Resources</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h2>GitHub Repo</h2>
+          <p>
+            View the source code, contribute, or report issues directly on GitHub.
+          </p>
+          <a href="https://github.com/Fallencell/https-fallencell.github.io-pagework-" target="_blank">GitHub &rarr;</a>
+        </div>
+        <div class="card">
+          <h2>Documentation</h2>
+          <p>
+            Access detailed documentation for each project, including usage and customization tips.
+          </p>
+          <a href="#">Docs &rarr;</a>
+        </div>
+        <div class="card">
+          <h2>External Links</h2>
+          <p>
+            Useful external resources, libraries, and references for further learning and inspiration.
+          </p>
+          <a href="#">Links &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:3rem;">
+      <h2>Contact</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h2>Get in Touch</h2>
+          <p>
+            Want to collaborate or have feedback? <br>
+            Reach out via <a href="mailto:fallenmedia25@gmail.com" style="color:var(--primary);">email</a> or open an issue on GitHub.
+          </p>
+        </div>
+        <div class="card">
+          <h2>Connect</h2>
+          <p>
+            Follow me on social media for updates, tips, and more cool projects!
+          </p>
+          <a href="https://github.com/Fallencell" target="_blank">GitHub Profile &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Fallencell &mdash; PageWork &middot; Powered by GitHub Pages
+  </footer>
+</body>
+</html>
