@@ -1,200 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added initial-scale=1.0 for better mobile scaling -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!--  Added for browser compatibility -->
-    <title>Welcome to PageWork</title> <!-- Improved title for SEO and clarity -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #6C63FF;
-            --accent: #00BFAE;
-            --bg: #f5f7fa;
-            --text: #222;
-            --card: #fff;
-            --shadow: 0 4px 24px rgba(0,0,0,0.07);
-        }
-
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background: var(--bg);
-            margin: 0;
-            color: var(--text);
-            line-height: 1.6; /* Improved readability */
-        }
-
-        header {
-            background: var(--primary);
-            color: #fff;
-            padding: 2.5rem 1.5rem 2rem 1.5rem; /* Consistent padding */
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            margin: 0 0 0.75rem 0; /*  Adjusted margin */
-        }
-
-        header p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        nav {
-            margin-top: 2rem;
-            margin-bottom: 2rem; /* Consistent margins */
-            text-align: center;
-        }
-
-        nav a {
-            display: inline-block;
-            margin: 0 1.2rem;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem; /* Adjusted padding for easier clicking */
-            border-radius: 5px;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        nav a:hover {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        .container {
-            max-width: 950px;
-            margin: 3rem auto 0 auto; /* Adjusted top margin */
-            padding: 0 1.5rem; /* Consistent padding */
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min-width for better responsiveness */
-            gap: 2rem;
-            margin-top: 2.5rem; /* Adjusted top margin */
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            padding: 2rem 1.5rem;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .card:hover {
-            transform: translateY(-4px) scale(1.02); /* Less aggressive scaling on hover */
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.5rem; /* Slightly larger heading */
-            color: var(--primary);
-        }
-
-        .card p {
-            font-size: 1rem;
-            flex-grow: 1;
-        }
-
-        .card a {
-            color: var(--accent);
-            text-decoration: none;
-            margin-top: 1.2rem; /* Adjusted top margin */
-            font-weight: 500;
-        }
-
-        .card a:hover {
-            text-decoration: underline;
-        }
-
-        section.intro {
-            /*  Placeholder for section styling */
-        }
-
-        /* Added basic media queries for mobile responsiveness */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
-            }
-
-            header p {
-                font-size: 1.1rem;
-            }
-
-            nav a {
-                margin: 0 0.8rem;
-                font-size: 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr; /* Stack cards on small screens */
-            }
-
-            .card h2 {
-                font-size: 1.3rem;
-            }
-
-            .card p {
-                font-size: 0.95rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Pagework Mod Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Hacker vibe */
+    body {
+      background: #181a1b;
+      color: #39ff14;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      margin: 0;
+      min-height: 100vh;
+    }
+    #modMenu {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      background: rgba(20, 20, 20, 0.98);
+      border: 2px solid #39ff14;
+      border-radius: 10px;
+      padding: 20px 24px;
+      z-index: 9999;
+      min-width: 240px;
+      box-shadow: 0 0 30px #39ff14a0;
+      transition: box-shadow 0.2s;
+    }
+    #modMenu h2 {
+      margin-top: 0;
+      color: #39ff14;
+      font-size: 1.3em;
+      letter-spacing: 2px;
+      text-shadow: 0 0 3px #39ff14b0;
+      margin-bottom: 15px;
+    }
+    #modMenu label {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    #modMenu input[type="checkbox"] {
+      accent-color: #39ff14;
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+    }
+    #modMenu .loading {
+      color: #888;
+      font-size: 0.95em;
+      margin: 10px 0;
+      text-align: center;
+    }
+    #modMenu .error {
+      color: #f44336;
+      font-size: 0.98em;
+      margin: 10px 0;
+    }
+    #modMenuToggle {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      background: #181a1b;
+      border: 2px solid #39ff14;
+      color: #39ff14;
+      font-family: inherit;
+      font-size: 1.1em;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      z-index: 10000;
+      cursor: pointer;
+      box-shadow: 0 0 10px #39ff14a0;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #modMenuToggle:hover {
+      background: #232826;
+    }
+  </style>
 </head>
 <body>
+  <button id="modMenuToggle" title="Show/Hide Mod Menu">☰</button>
+  <div id="modMenu" style="display:none;">
+    <h2>Mod Menu</h2>
+    <div class="loading">Loading pagework.user.js...</div>
+  </div>
 
-    <header>
-        <h1>Welcome to PageWork!</h1>
-        <p>A tool to help you build and manage your web pages.</p>
-    </header>
+  <script>
+    // Hacker "glitch" animation for menu open/close (optional)
+    function glitchEffect(el) {
+      el.style.boxShadow = "0 0 60px #39ff14f0, 0 0 15px #fff";
+      setTimeout(() => {
+        el.style.boxShadow = "0 0 30px #39ff14a0";
+      }, 150);
+    }
 
-    <nav>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    // Menu toggle logic
+    const menu = document.getElementById('modMenu');
+    const toggleBtn = document.getElementById('modMenuToggle');
+    toggleBtn.addEventListener('click', () => {
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+      glitchEffect(menu);
+    });
 
-    <div class="container">
-        <section class="intro">
-            <h2>Introduction</h2>
-            <p>PageWork provides an intuitive platform to create and customize your web pages with ease.  Build professional websites without needing extensive coding knowledge.</p>
-        </section>
+    // Helper: auto-detect exported features (functions/booleans) from pagework.user.js
+    function detectFeatures(obj) {
+      if (!obj) return [];
+      return Object.entries(obj)
+        .filter(([key, val]) =>
+          typeof val === 'function' || typeof val === 'boolean'
+        )
+        .map(([key, val]) => ({
+          name: key,
+          type: typeof val,
+          value: val
+        }));
+    }
 
-        <div class="card-grid">
-            <article class="card"> <!-- Changed to article for semantic clarity -->
-                <h2>Easy Page Creation</h2>
-                <p>Drag and drop elements to design your pages. No coding required!</p>
-                <a href="#learn-more">Learn More</a>
-            </article>
+    // Core: dynamically load and inject pagework.user.js
+    function injectUserScript(src, onload, onerror) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.type = 'text/javascript';
+      script.async = true;
+      script.onload = onload;
+      script.onerror = onerror;
+      document.head.appendChild(script);
+    }
 
-            <article class="card"> <!-- Changed to article for semantic clarity -->
-                <h2>Customization Options</h2>
-                <p>Choose from a variety of templates and customize colors, fonts, and layouts.</p>
-                <a href="#learn-more">Learn More</a>
-            </article>
+    // Try to load as window.pagework, exports, or look for global functions
+    function getExports() {
+      if (window.pagework) return window.pagework;
+      if (window.exports) return window.exports;
+      // Fallback: scan window for functions starting with 'pw_' (as example)
+      const keys = Object.keys(window).filter(k => k.startsWith('pw_') && typeof window[k] === 'function');
+      const fallback = {};
+      keys.forEach(k => fallback[k] = window[k]);
+      return fallback;
+    }
 
-            <article class="card"> <!-- Changed to article for semantic clarity -->
-                <h2>Mobile-Friendly Design</h2>
-                <p>Your pages will look great on any device, thanks to built-in responsiveness.</p>
-                <a href="#learn-more">Learn More</a>
-            </article>
-        </div>
-    </div>
+    // Menu population logic
+    function renderModMenu(features) {
+      const menu = document.getElementById('modMenu');
+      menu.innerHTML = `<h2>Mod Menu</h2>`;
+      if (!features.length) {
+        menu.innerHTML += `<div class="error">No mod features detected 😢</div>`;
+        return;
+      }
+      features.forEach(f => {
+        const id = 'mod-' + f.name;
+        menu.innerHTML += `
+          <label>
+            <input type="checkbox" id="${id}" ${f.type === 'boolean' && f.value ? 'checked' : ''}>
+            ${f.name}
+          </label>
+        `;
+      });
+      // Add handlers for toggling features
+      features.forEach(f => {
+        const id = 'mod-' + f.name;
+        const input = document.getElementById(id);
+        input.addEventListener('change', e => {
+          const exports = getExports();
+          if (f.type === 'function') {
+            // Call the function on toggle (enable = checked, disable = unchecked)
+            if (typeof exports[f.name] === 'function') {
+              try {
+                exports[f.name](e.target.checked);
+              } catch (err) {
+                alert('Error toggling feature: ' + f.name);
+              }
+            }
+          } else if (f.type === 'boolean') {
+            // Set the value
+            exports[f.name] = e.target.checked;
+          }
+        });
+      });
+    }
 
+    // Start: inject pagework.user.js
+    const userScriptURL = './pagework.user.js'; // Adjust path if needed!
+
+    injectUserScript(
+      userScriptURL,
+      () => {
+        // Wait a moment for script to register globals
+        setTimeout(() => {
+          const exports = getExports();
+          const features = detectFeatures(exports);
+          renderModMenu(features);
+        }, 300);
+      },
+      () => {
+        menu.innerHTML = `<h2>Mod Menu</h2><div class="error">Failed to load pagework.user.js</div>`;
+      }
+    );
+  </script>
 </body>
 </html>
