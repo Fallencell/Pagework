@@ -1,63 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Pagework Mod Menu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts for a more styled monospace font -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet" />
+
   <style>
-    /* Hacker vibe */
+    /* Hacker Vibe Styling */
     body {
       background: #181a1b;
       color: #39ff14;
       font-family: 'Fira Mono', 'Consolas', monospace;
       margin: 0;
       min-height: 100vh;
-    }
-    #modMenu {
-      position: fixed;
-      top: 40px;
-      right: 40px;
-      background: rgba(20, 20, 20, 0.98);
-      border: 2px solid #39ff14;
-      border-radius: 10px;
-      padding: 20px 24px;
-      z-index: 9999;
-      min-width: 240px;
-      box-shadow: 0 0 30px #39ff14a0;
-      transition: box-shadow 0.2s;
-    }
-    #modMenu h2 {
-      margin-top: 0;
-      color: #39ff14;
-      font-size: 1.3em;
-      letter-spacing: 2px;
-      text-shadow: 0 0 3px #39ff14b0;
-      margin-bottom: 15px;
-    }
-    #modMenu label {
       display: flex;
-      align-items: center;
-      margin: 8px 0;
-      cursor: pointer;
-      font-size: 1em;
+      flex-direction: column;
     }
-    #modMenu input[type="checkbox"] {
-      accent-color: #39ff14;
-      margin-right: 10px;
-      width: 18px;
-      height: 18px;
-    }
-    #modMenu .loading {
-      color: #888;
-      font-size: 0.95em;
-      margin: 10px 0;
-      text-align: center;
-    }
-    #modMenu .error {
-      color: #f44336;
-      font-size: 0.98em;
-      margin: 10px 0;
-    }
+
+    /* Toggle Button Style */
     #modMenuToggle {
       position: fixed;
       top: 40px;
@@ -65,33 +28,118 @@
       background: #181a1b;
       border: 2px solid #39ff14;
       color: #39ff14;
-      font-family: inherit;
-      font-size: 1.1em;
+      font-family: 'Fira Mono', monospace;
+      font-size: 1.2em;
       border-radius: 50%;
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       z-index: 10000;
       cursor: pointer;
       box-shadow: 0 0 10px #39ff14a0;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     #modMenuToggle:hover {
       background: #232826;
+      transform: scale(1.05);
+    }
+
+    /* Mod Menu Styling */
+    #modMenu {
+      position: fixed;
+      top: 40px;
+      right: 100px;
+      background: rgba(20, 20, 20, 0.98);
+      border: 2px solid #39ff14;
+      border-radius: 10px;
+      padding: 24px 30px;
+      z-index: 9999;
+      min-width: 280px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 0 40px #39ff14a0;
+      transition: box-shadow 0.3s, opacity 0.3s, transform 0.3s;
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    /* Show/hide animation for menu */
+    #modMenu.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header styling */
+    #modMenu h2 {
+      margin-top: 0;
+      color: #39ff14;
+      font-size: 1.4em;
+      letter-spacing: 2px;
+      text-shadow: 0 0 3px #39ff14b0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* Labels and controls */
+    #modMenu label {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      cursor: pointer;
+      font-size: 1em;
+      user-select: none;
+    }
+
+    #modMenu input[type="checkbox"] {
+      accent-color: #39ff14;
+      margin-right: 12px;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Feedback messages */
+    .loading {
+      color: #888;
+      font-size: 0.95em;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .error {
+      color: #f44336;
+      font-size: 0.98em;
+      margin: 10px 0;
+      padding: 8px;
+      background: rgba(255, 0, 0, 0.1);
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    /* Additional styling for toggled states */
+    .feature-disabled {
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
+  <!-- Toggle Button for Mod Menu -->
   <button id="modMenuToggle" title="Show/Hide Mod Menu">☰</button>
+
+  <!-- Mod Menu Container (initially hidden) -->
   <div id="modMenu" style="display:none;">
-    <h2>Mod Menu</h2>
+    <h2>Pagework Mod Menu</h2>
     <div class="loading">Loading pagework.user.js...</div>
   </div>
 
   <script>
-    // Hacker "glitch" animation for menu open/close (optional)
+    // ============================
+    // Utility Functions
+    // ============================
+
+    // Glitch effect for menu toggle (visual feedback)
     function glitchEffect(el) {
       el.style.boxShadow = "0 0 60px #39ff14f0, 0 0 15px #fff";
       setTimeout(() => {
@@ -99,15 +147,32 @@
       }, 150);
     }
 
-    // Menu toggle logic
+    // Toggle display of the mod menu with animation
     const menu = document.getElementById('modMenu');
     const toggleBtn = document.getElementById('modMenuToggle');
+
     toggleBtn.addEventListener('click', () => {
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+      if (menu.style.display === 'none' || !menu.classList.contains('show')) {
+        menu.style.display = 'block';
+        // Animate appearance
+        setTimeout(() => {
+          menu.classList.add('show');
+        }, 10);
+      } else {
+        menu.classList.remove('show');
+        // Delay hide to allow fade-out
+        setTimeout(() => {
+          menu.style.display = 'none';
+        }, 300);
+      }
       glitchEffect(menu);
     });
 
-    // Helper: auto-detect exported features (functions/booleans) from pagework.user.js
+    // ============================
+    // Feature Detection & Injection
+    // ============================
+
+    // Detect functions or booleans exported by the user script
     function detectFeatures(obj) {
       if (!obj) return [];
       return Object.entries(obj)
@@ -121,7 +186,7 @@
         }));
     }
 
-    // Core: dynamically load and inject pagework.user.js
+    // Load external script dynamically
     function injectUserScript(src, onload, onerror) {
       const script = document.createElement('script');
       script.src = src;
@@ -132,42 +197,50 @@
       document.head.appendChild(script);
     }
 
-    // Try to load as window.pagework, exports, or look for global functions
+    // Fallback for accessing exported features
     function getExports() {
       if (window.pagework) return window.pagework;
       if (window.exports) return window.exports;
-      // Fallback: scan window for functions starting with 'pw_' (as example)
+      // Example: scan window for functions starting with 'pw_'
       const keys = Object.keys(window).filter(k => k.startsWith('pw_') && typeof window[k] === 'function');
       const fallback = {};
       keys.forEach(k => fallback[k] = window[k]);
       return fallback;
     }
 
-    // Menu population logic
+    // ============================
+    // Render Mod Menu
+    // ============================
+
     function renderModMenu(features) {
-      const menu = document.getElementById('modMenu');
-      menu.innerHTML = `<h2>Mod Menu</h2>`;
+      const menuContainer = document.getElementById('modMenu');
+      menuContainer.innerHTML = `<h2>Pagework Mod Menu</h2>`;
+      
       if (!features.length) {
-        menu.innerHTML += `<div class="error">No mod features detected 😢</div>`;
+        menuContainer.innerHTML += `<div class="error">No mod features detected 😢</div>`;
         return;
       }
+
+      // Generate toggle controls for each feature
       features.forEach(f => {
         const id = 'mod-' + f.name;
-        menu.innerHTML += `
-          <label>
-            <input type="checkbox" id="${id}" ${f.type === 'boolean' && f.value ? 'checked' : ''}>
+        const checkedAttr = (f.type === 'boolean' && f.value) ? 'checked' : '';
+        menuContainer.innerHTML += `
+          <label for="${id}">
+            <input type="checkbox" id="${id}" ${checkedAttr}>
             ${f.name}
           </label>
         `;
       });
-      // Add handlers for toggling features
+
+      // Add event listeners for toggle controls
       features.forEach(f => {
         const id = 'mod-' + f.name;
         const input = document.getElementById(id);
         input.addEventListener('change', e => {
           const exports = getExports();
           if (f.type === 'function') {
-            // Call the function on toggle (enable = checked, disable = unchecked)
+            // Call function with true/false argument
             if (typeof exports[f.name] === 'function') {
               try {
                 exports[f.name](e.target.checked);
@@ -176,20 +249,34 @@
               }
             }
           } else if (f.type === 'boolean') {
-            // Set the value
+            // Set boolean value
             exports[f.name] = e.target.checked;
+            // Optional: Visual feedback
+            if (!e.target.checked) {
+              input.parentElement.classList.add('feature-disabled');
+            } else {
+              input.parentElement.classList.remove('feature-disabled');
+            }
           }
         });
+        // Initialize disabled style if false
+        if (f.type === 'boolean' && f.value === false) {
+          input.parentElement.classList.add('feature-disabled');
+        }
       });
     }
 
-    // Start: inject pagework.user.js
-    const userScriptURL = './pagework.user.js'; // Adjust path if needed!
+    // ============================
+    // Main Execution
+    // ============================
 
+    const userScriptURL = './pagework.user.js'; // Adjust path as needed
+
+    // Load user script
     injectUserScript(
       userScriptURL,
       () => {
-        // Wait a moment for script to register globals
+        // Wait briefly for the script to register globals
         setTimeout(() => {
           const exports = getExports();
           const features = detectFeatures(exports);
@@ -197,7 +284,8 @@
         }, 300);
       },
       () => {
-        menu.innerHTML = `<h2>Mod Menu</h2><div class="error">Failed to load pagework.user.js</div>`;
+        const menu = document.getElementById('modMenu');
+        menu.innerHTML = `<h2>Pagework Mod Menu</h2><div class="error">Failed to load pagework.user.js</div>`;
       }
     );
   </script>
